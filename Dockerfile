@@ -3,7 +3,7 @@ FROM nvcr.io/nvidia/pytorch:19.09-py3
 RUN apt update -y && \
     apt upgrade -y && \
     apt install -y libmecab-dev && \
-    pip install virtualenv gensim numpy scipy matplotlib seaborn sklearn zenhan Pillow ipython[all] jupyter pandas tqdm jupyterlab optuna && \
+    pip install virtualenv numpy scipy matplotlib seaborn sklearn zenhan Pillow ipython[all] jupyter pandas tqdm jupyterlab gensim sentencepiece optuna && \
     jupyter serverextension enable --py jupyterlab --sys-prefix && \
     pip install -U torch && \ 
     pip install -U spacy spacy-lookups-data && \
