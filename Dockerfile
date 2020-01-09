@@ -3,12 +3,23 @@ FROM nvcr.io/nvidia/pytorch:19.09-py3
 RUN apt update -y && \
     apt upgrade -y && \
     apt install -y libmecab-dev && \
-    pip install virtualenv numpy scipy matplotlib seaborn sklearn zenhan Pillow ipython[all] jupyter pandas tqdm jupyterlab gensim sentencepiece optuna && \
+    apt install -y cmake build-essential pkg-config libgoogle-perftools-dev && \
+    pip install virtualenv numpy scipy matplotlib seaborn sklearn zenhan Pillow ipython[all] jupyter pandas tqdm jupyterlab gensim optuna && \
     jupyter serverextension enable --py jupyterlab --sys-prefix && \
     pip install -U torch && \ 
     pip install -U spacy spacy-lookups-data && \
     python -m spacy download en_core_web_sm && \
     rm -rf /var/lib/apt/lists/
+RUN pip install sentencepiece && \
+    git clone https://github.com/google/sentencepiece.git && \
+    cd sentencepiece && \
+    mkdir build && \
+    cd build && \
+    cmake .. && \
+    make -j $(nproc) && \
+    make install && \
+    ldconfig -v && \
+    rm -rf sentencepiece
 RUN git clone https://github.com/taku910/mecab.git && \
     cd mecab/mecab && \
     ./configure --with-charset=utf8 && \
