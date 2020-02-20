@@ -9,6 +9,7 @@ RUN apt update -y && \
     pip install -U torch && \ 
     pip install -U spacy spacy-lookups-data && \
     python -m spacy download en_core_web_sm && \
+    pip install transformers && \
     rm -rf /var/lib/apt/lists/
 RUN pip install sentencepiece && \
     git clone https://github.com/google/sentencepiece.git && \
