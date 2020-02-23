@@ -20,6 +20,7 @@ RUN pip install sentencepiece && \
     make -j $(nproc) && \
     make install && \
     ldconfig -v && \
+    cd ../.. && \
     rm -rf sentencepiece
 RUN git clone https://github.com/taku910/mecab.git && \
     cd mecab/mecab && \
