@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:19.09-py3
+FROM nvcr.io/nvidia/pytorch:20.10-py3
 
 RUN apt update -y && \
     apt upgrade -y && \
